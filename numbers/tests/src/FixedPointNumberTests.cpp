@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include "FixedPointNumberTests.hpp"
+#include "Ishiko/Math/Numbers/FixedPointNumber.hpp"
 
 using namespace Ishiko;
 
@@ -13,4 +14,7 @@ FixedPointNumberTests::FixedPointNumberTests(const TestNumber& number, const Tes
 
 void FixedPointNumberTests::ConstructorTest1(Test& test)
 {
+    FixedPointNumber<10, 2> fixed_point_number;
+
+    ISHIKO_TEST_PASS();
 }

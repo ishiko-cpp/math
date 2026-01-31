@@ -20,5 +20,8 @@
     <ClInclude Include="..\..\..\include\Ishiko\Math\Numbers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\Ishiko\Math\Numbers\FixedPointNumber.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
