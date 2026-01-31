@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2000-2026 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
+#include "FixedPointNumberTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 #include <exception>
 
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
         TestHarness the_test_harness("Ishiko/C++ Numbers Library Tests", configuration);
 
         TestSequence& theTests = the_test_harness.tests();
+        theTests.append<FixedPointNumberTests>();
 
         return the_test_harness.run();
     }

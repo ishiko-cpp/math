@@ -25,8 +25,14 @@ program IshikoNumbersTests : IshikoNumbers, IshikoTestFrameworkCore
         cxx-compiler-options = "/utf-8";
     }
 
+    headers
+    {
+        ../../src/FixedPointNumberTests.hpp
+    }
+
     sources
     {
+        ../../src/FixedPointNumberTests.cpp
         ../../src/main.cpp
     }
 }
