@@ -1,0 +1,22 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+
+setting ISHIKO_CPP_MATH_ROOT
+{
+    help = "Path to the Ishiko/C++ Math installation";
+    default = '$(ISHIKO_CPP_ROOT)/math';
+}
+
+template IshikoNumbers
+{
+    includedirs += $(ISHIKO_CPP_MATH_ROOT)/include;
+
+    if ($(toolset) == gnu)
+    {
+        libdirs += $(ISHIKO_CPP_MATH_ROOT)/lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_CPP_MATH_ROOT)/lib/$(arch);
+    }
+}
