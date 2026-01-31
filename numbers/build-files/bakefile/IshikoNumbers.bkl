@@ -32,6 +32,6 @@ library IshikoNumbers
 
     headers
     {
-        ../../include/Ishiko/Math/Numbers.hpp
+        ../../../include/Ishiko/Math/Numbers.hpp
     }
 }
