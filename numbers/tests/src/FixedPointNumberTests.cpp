@@ -16,5 +16,6 @@ void FixedPointNumberTests::ConstructorTest1(Test& test)
 {
     FixedPointNumber<10, 2> fixed_point_number;
 
+    ISHIKO_TEST_FAIL_IF_NEQ(fixed_point_number, (FixedPointNumber<10, 2>(0)));
     ISHIKO_TEST_PASS();
 }
