@@ -1,0 +1,38 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/math/include/Ishiko/Math/Numbers.bkl;
+import $(ishikopath)/test-framework/include/Ishiko/TestFramework/Core.bkl;
+
+toolsets = gnu vs2022 vs2019 vs2017;
+
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2022.solutionfile = ../vc17/IshikoNumbersTests.sln;
+vs2019.solutionfile = ../vc16/IshikoNumbersTests.sln;
+vs2017.solutionfile = ../vc15/IshikoNumbersTests.sln;
+
+program IshikoNumbersTests : IshikoNumbers, IshikoTestFrameworkCore
+{
+    archs = x86 x86_64;
+
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++14";
+        libs += IshikoTestFrameworkCore IshikoConfiguration IshikoXML IshikoFileSystem IshikoIO IshikoProcess IshikoTime IshikoText IshikoErrors IshikoBasePlatform;
+        libs += fmt boost_filesystem;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        cxx-compiler-options = "/utf-8";
+    }
+
+    headers
+    {
+        ../../src/FixedPointNumberTests.hpp
+    }
+
+    sources
+    {
+        ../../src/FixedPointNumberTests.cpp
+        ../../src/main.cpp
+    }
+}

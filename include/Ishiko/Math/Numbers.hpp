@@ -4,4 +4,6 @@
 #ifndef GUARD_ISHIKO_CPP_MATH_NUMBERS_HPP
 #define GUARD_ISHIKO_CPP_MATH_NUMBERS_HPP
 
+#include "Numbers/FixedPointNumber.hpp"
+
 #endif
