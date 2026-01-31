@@ -9,7 +9,51 @@ namespace Ishiko
 	template<size_t precision, size_t scale>
 	class FixedPointNumber
 	{
+		static_assert(scale <= precision, "Scale cannot exceed precision");
+
+    public:
+        FixedPointNumber() noexcept;
+        explicit FixedPointNumber(int value);
+
+        bool operator==(const FixedPointNumber& other) const noexcept;
+        bool operator!=(const FixedPointNumber& other) const noexcept;
+
+    private:
+        // Helper to select appropriate integer type based on precision
+        using storage_type =
+            std::conditional_t<
+                (precision <= std::numeric_limits<int32_t>::digits10),
+                int32_t,
+                std::conditional_t<(precision <= std::numeric_limits<int64_t>::digits10), int64_t, void>
+            >;
+        static_assert(!std::is_void<storage_type>::value, "Precision exceeds maximum supported value (18 digits)");
+
+        storage_type m_value;
 	};
+}
+
+template<size_t precision, size_t scale>
+Ishiko::FixedPointNumber<precision, scale>::FixedPointNumber() noexcept
+    : m_value(0)
+{
+}
+
+template<size_t precision, size_t scale>
+Ishiko::FixedPointNumber<precision, scale>::FixedPointNumber(int value)
+    : m_value(value)
+{
+}
+
+template<size_t precision, size_t scale>
+bool Ishiko::FixedPointNumber<precision, scale>::operator==(const FixedPointNumber& other) const noexcept
+{
+    return m_value == other.m_value;
+}
+
+template<size_t precision, size_t scale>
+bool Ishiko::FixedPointNumber<precision, scale>::operator!=(const FixedPointNumber& other) const noexcept
+{
+    return m_value != other.m_value;
 }
 
 #endif
